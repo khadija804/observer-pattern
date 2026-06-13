@@ -12,11 +12,14 @@ public class Main {
         Observer o2 = new ObserverImpl2();
         observable.subscribe(o1);
         observable.subscribe(o2);
-        observable.subscribe(newState -> {
-            System.out.println(" --------- observer 3 -----");
-            System.out.println(newState*Math.cos(newState));
+        observable.subscribe(obs -> {
+            if(obs instanceof ObservableImpl o ){
+                System.out.println(" --------- observer 3 -----");
+                System.out.println(o.getState()*Math.cos(o.getState()));
+            }
         });
         observable.setState(60);
+        observable.setState(20);
 
 
 
